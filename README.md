@@ -26,8 +26,7 @@ Substitua este texto por uma descrição do que foi produzido: funcionalidades e
 
 #### API escolhida
 
-
-Substitua este texto por informações sobre a API escolhida, incluindo URL com documentação e exemplos de endpoints.
+- [QuizAPI](https://quizapi.io/)
 
 
 
@@ -43,7 +42,6 @@ Substitua este trecho por uma lista detalhada de tecnologias usadas (tanto as b�
 - HTML
 - CSS
 - Javascript
-- [QuizAPI](https://quizapi.io/)
 
 #### Ambiente de desenvolvimento
 
