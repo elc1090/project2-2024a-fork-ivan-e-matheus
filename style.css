@@ -63,7 +63,7 @@ body{
     margin-bottom: 2rem;
 }
 
-.quiz-question .category{
+.quiz-question .tag{
     font-size: 0.9rem;
     font-weight: 500;
     background-color: var(--light-purple-color);
@@ -74,16 +74,16 @@ body{
     display: inline-block;
 }
 
-.quiz-question .difficulty{
-    font-size: 0.9rem;
-    font-weight: 500;
+.quiz-question .category{
     background-color: var(--light-purple-color);
-    color: var(--light-color);
-    padding: .2rem .4rem;
-    border-radius: .2rem;
-    margin-top: 0.5rem;
-    margin-inline: 0.5rem;
-    display: inline-block;
+}
+
+.quiz-question .difficulty{
+    background-color: #54C057;
+}
+
+.quiz-question .type{
+    background-color: #8A8A8A;
 }
 
 .quiz-question .Easy{
