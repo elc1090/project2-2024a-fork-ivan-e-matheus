@@ -21,6 +21,10 @@
     justify-content: center;
 }
 
+.hidden{
+    display: none;
+}
+
 body{
     font-family: 'Poppins', sans-serif;
     min-height: 100vh;
@@ -32,11 +36,12 @@ body{
     background-color: var(--light-color);
     padding: 1.5rem 4rem 3rem 4rem;
     width: 600px;
-    height: 680px;
+    height: auto;
     border-top-left-radius: 1.5rem;
     border-bottom-right-radius: 1.5rem;
     position: relative;
-    box-shadow: 0 4px 6px rgb(0 0 0 / 10%), 0 1px 3px rgb(0 0 0 / 10%)
+    box-shadow: 0 4px 6px rgb(0 0 0 / 10%), 0 1px 3px rgb(0 0 0 / 10%);
+    transition: var(--transition);
 }
 
 .quiz-title{
@@ -66,7 +71,7 @@ body{
 .quiz-question .tag{
     font-size: 0.9rem;
     font-weight: 500;
-    background-color: var(--light-purple-color);
+    background-color: #000;
     color: var(--light-color);
     padding: .2rem .4rem;
     border-radius: .2rem;
@@ -127,12 +132,40 @@ body{
     transform: scale(0.97);
 }
 
+#answers .wrong{
+    border: 3px solid #C05454 !important;
+    background-color: #C05454 !important;
+    box-shadow: 0 4px 0 0 #911818 !important;
+    color: var(--light-color) !important;
+}
+
+#answers .correct{
+    border: 3px solid #54C057 !important;
+    background-color: #54C057 !important;
+    box-shadow: 0 4px 0 0 #18911C !important;
+    color: var(--light-color) !important;
+}
+
+#answers .correct-multiple{
+    border: 3px solid #BDC054 !important;
+    background-color: #BDC054 !important;
+    box-shadow: 0 4px 0 0 #8D9118 !important;
+    color: var(--light-color) !important;
+}
+
+#answers .unselected{
+    border: 3px solid var(--light-purple-color) !important;
+    background-color: var(--light-purple-color) !important;
+    box-shadow: 0 4px 0 0 #6c4298 !important;
+    color: var(--light-color) !important;
+}
+
 /* selected button styling */
-.selected{
-    background-color: var(--grey-color) !important;
-    color: var(--dark-color) !important;
-    border-color: var(--grey-color) !important;
-    box-sizing: 0 4px 0 0 #bbb !important;
+#answers .selected{
+    background-color: var(--grey-color);
+    color: var(--dark-color);
+    border-color: var(--grey-color);
+    box-shadow: 0 4px 0 0 #bbb;
 }
 
 .quiz-foot button{
@@ -165,6 +198,24 @@ body{
 
 #play-again{
     display:none;
+}
+
+#result{
+    padding: .7rem 0;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+#result i{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    line-height: 30px;
+    margin-right: .5rem;
+    margin-bottom: .5rem;
+    background-color: var(--light-purple-color);
+    color: var(--light-color);
 }
 
 @media(max-width: 678px){
