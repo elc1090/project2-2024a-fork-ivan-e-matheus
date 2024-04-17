@@ -14,7 +14,7 @@
 <div class="wrapper">
     <div class="quiz-container" id="quiz-container">
         <div class="quiz-head">
-            <h1 class="quiz-title">Quiz Game</h2>
+            <h1 class="quiz-title">Quiz Game</h1>
             <div class="quiz-score flex">
                 <span id="current-score">0</span>/<span id="total-questions">10</span>
             </div>
@@ -34,10 +34,65 @@
 
         <div class="quiz-foot">
             <button type="button" id="check-answer">Check Answer</button>
-            <button type="button" id="play-again">Play Again!</button>
         </div>
     </div>
-    
+
+    <div class="settings-container hidden" id="settings-container">
+        <div class="settings-head">
+            <h1 class="settings-title">Quiz Settings</h1>
+        </div>
+
+        <div class="difficulty-selector">
+            <p>Difficulty</p>
+            <input type="checkbox">Easy
+            <input type="checkbox">Medium
+            <input type="checkbox">Hard
+        </div>
+
+        <div class="settings-selector">
+            <div class="settings-selector-title">Selected tags</div>
+            <div class="settings-selector-selected"></div>
+            <select class="settings-combobox" id="settings-tags">
+                <option>Select tag...</option>
+            </select>
+            <button type="button" id="add-tag">+</button>
+            <button type="button" id="remove-tag">-</button>
+        </div>
+
+        <div class="settings-selector">
+            <div class="settings-selector-title">Selected categories</div>
+            <div class="settings-selector-selected" id="settings-selected-categories"></div>
+            <select class="settings-combobox" id="settings-categories">
+                <option>Select category...</option>
+            </select>
+            <button type="button" id="add-category">+</button>
+            <button type="button" id="remove-category">-</button>
+        </div>
+
+        <div class="settings-usage">
+            <p>Use tags or categories?</p>
+            <input type="radio">Tags
+            <input type="radio">Categories
+        </div>
+        
+        <button type="button"><i class="fa fa-save"></i></button>
+        <button type="button"><i class="fa fa-refresh"></i></button>
+        <button type="button">Cancel Changes</button>
+    </div>
+
+    <div class="statistics-container hidden" id="statistics-container">
+        <div class="statistics-head">
+            <h1 class="statistics-title">Quiz Statistics</h>
+        </div>
+        <button type="button">This session</button>
+        <button type="button">All time</button>
+    </div>
+
+    <div class="wrapper-footer flex">
+        <button type="button" id="button-settings"><i class="fa fa-gear"></i></button>
+        <button type="button" id="button-game"><i class="fa fa-house"></i></button>
+        <button type="button" id="button-stats"><i class="fa fa-bar-chart"></i></button>
+    </div>
 </div>
 
 <!-- Quiz Script -->
