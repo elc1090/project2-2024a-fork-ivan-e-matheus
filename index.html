@@ -15,12 +15,12 @@
     <div class="quiz-container" id="quiz-container">
         <div class="quiz-head">
             <h1 class="quiz-title">Quiz Game</h1>
-            <div class="quiz-score flex">
+            <div class="quiz-score flex hidden" id="quiz-score-div">
                 <span id="current-score">0</span>/<span id="total-questions">10</span>
             </div>
         </div>
 
-        <div class="quiz-body">
+        <div class="quiz-body hidden" id="quiz-body-div">
             <h2 class="quiz-question">
                 <span id="question">Question</span><br>
                 <span class="difficulty tag" id = "difficulty">Difficulty</span>
@@ -33,7 +33,7 @@
         </div>
 
         <div class="quiz-foot">
-            <button type="button" id="check-answer">Check Answer</button>
+            <button type="button" id="check-answer">Start Quiz</button>
         </div>
     </div>
 
@@ -42,42 +42,42 @@
             <h1 class="settings-title">Quiz Settings</h1>
         </div>
 
-        <div class="difficulty-selector">
-            <p>Difficulty</p>
-            <input type="checkbox">Easy
-            <input type="checkbox">Medium
-            <input type="checkbox">Hard
+        <h3 class="flex">Difficulty</h3>
+        <div class="settings-difficulty-selector">
+            <span><input type="checkbox" id="settings-chbox-easy">Easy</span>
+            <span><input type="checkbox" id="settings-chbox-medium">Medium</span>
+            <span><input type="checkbox" id="settings-chbox-hard">Hard</span>
         </div>
 
         <div class="settings-selector">
-            <div class="settings-selector-title">Selected tags</div>
-            <div class="settings-selector-selected"></div>
+            <div class="settings-selector-title"><h3>Selected tags</h3></div>
+            <div class="settings-selector-selected" id="settings-selected-tags"></div>
             <select class="settings-combobox" id="settings-tags">
                 <option>Select tag...</option>
             </select>
-            <button type="button" id="add-tag">+</button>
-            <button type="button" id="remove-tag">-</button>
+            <button type="button" id="add-tag">+</button><br>
+            <button type="button" id="clear-tags">Clear</button>
         </div>
 
         <div class="settings-selector">
-            <div class="settings-selector-title">Selected categories</div>
+            <div class="settings-selector-title"><h3>Selected categories</h3></div>
             <div class="settings-selector-selected" id="settings-selected-categories"></div>
             <select class="settings-combobox" id="settings-categories">
                 <option>Select category...</option>
             </select>
-            <button type="button" id="add-category">+</button>
-            <button type="button" id="remove-category">-</button>
+            <button type="button" id="add-category">+</button><br>
+            <button type="button" id="clear-categories">Clear</button>
         </div>
 
+        <h3 class="flex">Use tags or categories?</h3>
         <div class="settings-usage">
-            <p>Use tags or categories?</p>
-            <input type="radio">Tags
-            <input type="radio">Categories
+            <span><input type="radio" id="settings-rb-tags" value="tags" name="usage">Tags</span>
+            <span><input type="radio" id="settings-rb-cats" value="cats" name="usage">Categories</span>
+        </div>
+        <div class="flex">
+            <button type="button" id="settings-reset"><i class="fa fa-trash"></i> Reset Settings</button>
         </div>
         
-        <button type="button"><i class="fa fa-save"></i></button>
-        <button type="button"><i class="fa fa-refresh"></i></button>
-        <button type="button">Cancel Changes</button>
     </div>
 
     <div class="statistics-container hidden" id="statistics-container">
@@ -86,6 +86,13 @@
         </div>
         <button type="button">This session</button>
         <button type="button">All time</button>
+        <div class="statistics-per-tag">
+            Per tag
+        </div>
+        <div class="statistics-per-category">
+            Per category
+
+        </div>
     </div>
 
     <div class="wrapper-footer flex">

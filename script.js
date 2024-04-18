@@ -28,16 +28,31 @@ let current_score = 0;
 let total_questions = 0;
 
 let quiz_ended = false;
+let quiz_started = false;
 
 /* store settings data */
-let settings_tags, settings_categories;
-let tags_data, categories_data;
+let settings_tags = [], settings_categories = [], settings_difficulty = [];
+let tags_data = [], categories_data = [], difficulty_data = ["easy", "medium", "hard"];
+let settings_using_categories = true;
 
 /* load settings UI elements */
 const settings_tags_options = document.getElementById("settings-tags");
+const settings_tags_selected = document.getElementById("settings-selected-tags");
 const settings_categories_options = document.getElementById("settings-categories");
+const settings_categories_selected = document.getElementById("settings-selected-categories")
+const settings_chbox_easy = document.getElementById("settings-chbox-easy");
+const settings_chbox_medium = document.getElementById("settings-chbox-medium");
+const settings_chbox_hard = document.getElementById("settings-chbox-hard");
+const settings_rb_tags = document.getElementById("settings-rb-tags");
+const settings_rb_cats = document.getElementById("settings-rb-cats");
+const settings_add_tag = document.getElementById("add-tag");
+const settings_clear_tags = document.getElementById("clear-tags");
+const settings_add_category = document.getElementById("add-category");
+const settings_clear_categories = document.getElementById("clear-categories");
+const settings_reset = document.getElementById("settings-reset");
 
 async function loadTags() {
+    console.log("loading tags...")
     let APIUrl = `https://quizapi.io/api/v1/tags?apiKey=${apiKey}`;
     let result;
     do{
@@ -51,14 +66,20 @@ async function loadTags() {
         "Blockchain", "VueJS", ".Net"
     ];
     for (tag of tags_data){
-        if (!filter_tags.includes(tag.name))
+        if (!filter_tags.includes(tag.name)){
             tags_list.push(tag.name);
+            let opt = document.createElement("option");
+            opt.value = tag.name;
+            opt.text = tag.name;
+            settings_tags_options.add(opt);
+        }
     }
-    console.log("tags data");
-    console.log(tags_list);
+    tags_data = tags_list;
+    console.log("loaded tags.")
 }
 
 async function loadCategories(){
+    console.log("loading categories...")
     let APIUrl = `https://quizapi.io/api/v1/categories?apiKey=${apiKey}`;
     let result;
     do{
@@ -68,9 +89,13 @@ async function loadCategories(){
     let categories_list = [];
     for (category of categories_data){
         categories_list.push(category.name);
+        let opt = document.createElement("option");
+        opt.value = category.name;
+        opt.text = category.name;
+        settings_categories_options.add(opt);
     }
-    console.log("categories data");
-    console.log(categories_list);
+    categories_data = categories_list;
+    console.log("loaded categories.")
 }
 
 /* creates eventlistners for buttons */
@@ -79,6 +104,35 @@ function eventListners(){
     wrapper_footer_settings.addEventListener('click', gotoSettings);
     wrapper_footer_game.addEventListener('click', gotoQuiz);
     wrapper_footer_stats.addEventListener('click', gotoStats);
+    settings_rb_cats.addEventListener('click', function(e){
+        settings_using_categories = true;
+        showSettings();
+    });
+    settings_rb_tags.addEventListener('click', function(e){
+        settings_using_categories = false;
+        showSettings();
+    });
+    settings_clear_tags.addEventListener('click', function(e){
+        settings_tags = []
+        showSettings();
+    });
+    settings_clear_categories.addEventListener('click', function(e){
+        settings_categories = []
+        showSettings();
+    });
+    settings_chbox_easy.addEventListener('click', updateDifficulty);
+    settings_chbox_medium.addEventListener('click', updateDifficulty);
+    settings_chbox_hard.addEventListener('click', updateDifficulty);
+    settings_reset.addEventListener('click', resetSettings);
+    settings_add_category.addEventListener('click', addCategory);
+    settings_add_tag.addEventListener('click', addTag);
+}
+
+function updateDifficulty(){
+    settings_difficulty = [];
+    if (settings_chbox_easy.checked) settings_difficulty.push("easy");
+    if (settings_chbox_medium.checked) settings_difficulty.push("medium");
+    if (settings_chbox_hard.checked) settings_difficulty.push("hard");
 }
 
 function gotoStats(){
@@ -97,22 +151,134 @@ function gotoSettings(){
     settings_container.classList.remove("hidden");
     quiz_container.classList.add("hidden");
     stats_container.classList.add("hidden");
+    showSettings();
+}
+
+function addCategory(){
+    var value = settings_categories_options.value;
+    if(!settings_categories.includes(value) && value != "Select category...")
+        settings_categories.push(value);
+    showSettings();
+}
+
+function addTag(){
+    var value = settings_tags_options.value;
+    if(!settings_tags.includes(value) && value != "Select tag...")
+        settings_tags.push(value);
+    showSettings();
+}
+
+async function setupSettings(){
+    console.log("setting up settings..");
+    settings_difficulty = [...difficulty_data];
+    await loadTags();
+    settings_tags = [...tags_data];
+    await loadCategories();
+    settings_categories = [...categories_data];
+    settings_using_categories = true;
+    console.log("settings set up.")
+}
+
+function resetSettings(){
+    console.log("resetting settings...");
+    settings_difficulty = [...difficulty_data];
+    settings_tags = [...tags_data];
+    settings_categories = [...categories_data];
+    settings_using_categories = true;
+    showSettings();
+}
+
+function showSettings(){
+    settings_tags_selected.innerHTML='';
+    settings_categories_selected.innerHTML='';
+    settings_chbox_easy.checked = settings_difficulty.includes("easy");
+    settings_chbox_medium.checked = settings_difficulty.includes("medium");
+    settings_chbox_hard.checked = settings_difficulty.includes("hard");
+    settings_rb_cats.checked = settings_using_categories;
+    settings_rb_tags.checked = !settings_using_categories;
+    
+    for (tag of settings_tags){
+        let span = document.createElement("span");
+        span.classList.add("tag");
+        span.innerHTML=tag;
+        span.addEventListener('click', function(e){
+            let idx = settings_tags.indexOf(e.target.innerHTML);
+            settings_tags.splice(idx,1);
+            showSettings();
+        })
+        settings_tags_selected.appendChild(span);
+    }
+    for (category of settings_categories){
+        let span = document.createElement("span");
+        span.classList.add("tag");
+        span.innerHTML=category;
+        span.addEventListener('click', function(e){
+            let idx = settings_categories.indexOf(e.target.innerHTML);
+            settings_categories.splice(idx,1);
+            showSettings();
+        })
+        settings_categories_selected.appendChild(span);
+    }
 }
 
 /* check if DOM content is loaded */
 document.addEventListener('DOMContentLoaded', () =>{
-    loadTags();
-    loadCategories();
-    loadQuestion();
+    setupSettings();
+    showSettings();
     eventListners();
 });
+
+Array.prototype.random = function () {
+    return this[Math.floor((Math.random()*this.length))];
+}
 
 /* load question from API */
 async function loadQuestion() {
     do{  
-        let APIUrl = `https://quizapi.io/api/v1/questions?apiKey=${apiKey}&limit=1`;
+        console.log("loading a question...");
+        console.log("possible difficulties:");
+        console.log(settings_difficulty);
+        if(settings_using_categories){
+            console.log("using categories:");
+            console.log(settings_categories);
+        } else {
+            console.log("using tags:");
+            console.log(settings_tags);
+        }
+        
         let result;
+        let fetch_error = 0;
         do{
+            let APIUrl = `https://quizapi.io/api/v1/questions?apiKey=${apiKey}&limit=1`;
+            if (settings_difficulty.length < 3 && settings_difficulty.length > 0) {
+                APIUrl = APIUrl + `&difficulty=${settings_difficulty.random()}`;
+            }
+            if (settings_using_categories){
+                
+                if (settings_categories.length < categories_data.length && settings_categories.length > 0){
+                    APIUrl = APIUrl + `&category=${settings_categories.random()}`;
+                }
+            } else {
+                
+                if (settings_tags.length < tags_data.length && settings_tags.length > 0){
+                    APIUrl = APIUrl + `&tags=${settings_tags.random()}`;
+                }
+            }
+            fetch_error += 1;
+            if(fetch_error > 10){
+                console.log("expanding difficulty");
+                settings_difficulty = [...difficulty_data];
+                if(fetch_error > 20){
+                    if (settings_using_categories){
+                        console.log("expanding categories...");
+                        settings_categories = [...categories_data];
+                    } else {
+                        console.log("expanding tags...");
+                        settings_tags = [...tags_data];
+                    }
+                }
+            }
+            console.log("APIUrl = "+APIUrl);
             console.log("fetching question API...");
             result = await fetch(`${APIUrl}`);
         } while(!result.ok);
@@ -170,8 +336,6 @@ function showQuestion(data){
     /* question tags */
     let quiz_taglist = document.getElementById("taglist");
     let question_tags = Object.values(data.tags);
-    console.log("question tags");
-    console.log(question_tags);
     quiz_taglist.innerHTML = '';
     for (tag of question_tags){
         /* avoid repeating category on tags */
@@ -205,6 +369,8 @@ function showQuestion(data){
 
     /* creation of selectors for answer list elements */
     selectOption();
+    document.getElementById("quiz-score-div").classList.remove("hidden");
+    document.getElementById("quiz-body-div").classList.remove("hidden")
 }
 
 /* creates selectors for answer list elements */
@@ -240,6 +406,12 @@ function updateScore(){
 
 /* check if answer is right */
 function checkAnswer(){
+    if (!quiz_started){
+        loadQuestion();
+        quiz_started = true;
+        return;
+    }
+
     if (quiz_ended){
         loadQuestion();
         return;
