@@ -1,27 +1,29 @@
 # Projeto: Consumindo uma API pública
 
-> 1. Baixe este arquivo e edite o texto em formato Markdown conforme as instruções a seguir.
-> 2. Substitua todos os trechos de texto iniciados com "Substitua" por informações do seu projeto, conforme solicitado em cada trecho.
-> 3. Substitua a imagem por um screenshot do projeto (arquivo pode ser armazenado no repositório ou em URL externa). GIFs animados também são permitidos!
-> 4. Remova todas as instruções de entrega.
-> 5. Double-check: Certifique-se de que seu README.md não contenha instruções de entrega!
-> 6. Entregue este README.md dentro da pasta raiz do repositório de entrega.
-> Opcional: é permitido alterar a formatação do README, desde que sejam mantidas todas as informações solicitadas (tudo bem adicionar mais informações)
 
-![Substitua a imagem ao lado por um screenshot do seu projeto](https://mdswanson.com/static/chops-ux-step-4.png "Screenshot do projeto")
+![screen](./img/screen.JPG "Screenshot do projeto 1")
+![screen](./img/screen1.JPG "Screenshot do projeto 2")
+![screen](./img/screen2.JPG "Screenshot do projeto 3")
+![screen](./img/screen3.JPG "Screenshot do projeto 4")
 
 
 Acesso: https://elc1090.github.io/project2-2024a-ivan-e-matheus/
 
 
 ### Desenvolvedores
-Ivan Maidana e Matheus de Almeida
+Ivan Maidana da Silveira e Matheus de Almeida
 Curso: Ciência da Computação
 
 
 ### Nosso produto
 
-Substitua este texto por uma descrição do que foi produzido: funcionalidades e relação com a temática "Conhecimento"
+O nosso projeto se trata de um quiz, que permite que os usuários testem seus conhecimentos em uma variedade de tópicos relacionados a tecnologias. Algumas das funcionalidades principais incluem:
+
+Perguntas do quiz são acessadas por meio de consultas a uma API, que fornece uma ampla gama de perguntas com várias categorias, tags e com diferentes níveis de dificuldade.
+
+Personalização da Experiência: Os usuários têm a capacidade de personalizar sua experiência de jogo selecionando a categoria das perguntas, as tags associadas e a dificuldade desejada.
+
+Análise de Desempenho: Além de fornecer perguntas de quiz, o site também oferece recursos de análise de desempenho. Os usuários podem visualizar gráficos que mostram seus acertos e erros por tag e categoria, permitindo que identifiquem áreas de força e fraqueza em seu conhecimento.
 
 
 #### API escolhida
@@ -29,34 +31,48 @@ Substitua este texto por uma descrição do que foi produzido: funcionalidades e
 - [QuizAPI](https://quizapi.io/)
 
 
-
-
 ### Desenvolvimento
 
 Substitua este texto por uma descrição do processo de desenvolvimento, explicando decisões tomadas e etapas do trabalho.
+O desenvolvimento do projeto, se deu em algumas etapas e decisões foram tomadas para garantir a criação de um quiz funcional e intuitivo.
 
+Primeiramente visitamos inúmeros sites, vídeos, imagens relacionadas a quizzes, para verificar como era a interface, a forma com que apresentavam as perguntas e opções de resposta. Posteriormente decidimos seguir o estilo que nosso quiz teria, semelhante ao de um vídeo citado, um pouco mais minimalista e sempre focando na usabilidade. Optamos por uma palheta de correr mais clara, a fonte principal sendo poppins, os ícones dos botões optamos por usar do site Font Awesome, e a biblioteca utilizada para os gráficos foi a chart.js.
+
+A implementação da interface foi feita utilizando HTML, CSS e JavaScript. Isso envolveu a criação da estrutura HTML das páginas, a estilização dos elementos usando CSS para torná-los visualmente atraentes e responsivos, e a adição de funcionalidades interativas e dinâmicas utilizando JavaScript.
+
+Para o quiz, foi necessário integração com a API que fornecesse perguntas e opções de resposta. Isso envolveu o uso de técnicas de requisição HTTP em JavaScript(fetch) para acessar os dados da API e exibi-los de forma adequada no site.
+
+Para a página de estatísticas, foi utilizada a biblioteca Chart.js para criar gráficos que representam os dados de desempenho dos usuários em relação a cada tag e categoria.
 
 #### Tecnologias
 
-Substitua este trecho por uma lista detalhada de tecnologias usadas (tanto as básicas, como HTML e CSS, como as mais específicas, por exemplo algum framework para frontend, etc.):
 - HTML
 - CSS
 - Javascript
+- chart.js (gráficos)
+- Font Awesome (ícones)
+
 
 #### Ambiente de desenvolvimento
 
-Substitua este trecho por uma lista detalhada dos ambientes/ferramentas de desenvolvimento utilizadas (por exemplo, VS Code + alguma extensão, etc.)
-- VS Code + Live Server
-- ...
+- VS Code (Tema: Dracula Official)
+- Extensões:
+    Git Graph
+    Live Server
+    Auto Close Tag
+
 
 #### Referências e créditos
 
-Substitua este trecho por uma lista bem detalhada de todo material consultado para ajudar no projeto, por exemplo:  URL de templates usados, URL de icon kits usados, créditos para colegas que colaboraram, geradores de código (incluindo alguns prompts usados para o ChatGPT, se for o caso)
 - [QuizAPI Documentation](https://quizapi.io/docs/1.0/overview)
 - [Quiz App Using Vanilla JavaScript | With Open Trivia DB API](https://www.youtube.com/watch?v=-cX5jnQgqSM)
-
+- [Como implementar GRÁFICOS dinâmicos com Chart.js](https://www.youtube.com/watch?v=6TWv10m49nM&list=PLARhMvcrqcLyrPIEOTvyehxruw99BLiLD)
+- [chart js](https://www.chartjs.org/docs/latest/)
+- [ícones](https://fontawesome.com/)
 
 
 
 ---
 Projeto entregue para a disciplina de [Desenvolvimento de Software para a Web](http://github.com/andreainfufsm/elc1090-2024a) em 2024a
+
+
