@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
         integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="style.css" rel="stylesheet">
 </head>
@@ -35,7 +37,7 @@
                 <div id="result"></div>
             </div>
 
-            <div class="quiz-foot">
+            <div class="quiz-start">
                 <button type="button" id="check-answer">Start Quiz</button>
             </div>
         </div>
@@ -47,9 +49,27 @@
 
             <h3 class="flex">Difficulty</h3>
             <div class="settings-difficulty-selector">
-                <span><input type="checkbox" id="settings-chbox-easy">Easy</span>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="settings-chbox-easy">
+                    <label class="form-check-label" for="settings-chbox-easy">
+                      Easy
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="settings-chbox-medium" checked>
+                    <label class="form-check-label" for="settings-chbox-medium">
+                      Medium
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="settings-chbox-hard" checked>
+                    <label class="form-check-label" for="settings-chbox-hard">
+                      Hard
+                    </label>
+                  </div>
+                <!-- <span><input type="checkbox" id="settings-chbox-easy">Easy</span>
                 <span><input type="checkbox" id="settings-chbox-medium">Medium</span>
-                <span><input type="checkbox" id="settings-chbox-hard">Hard</span>
+                <span><input type="checkbox" id="settings-chbox-hard">Hard</span> -->
             </div>
 
             <div class="settings-selector">
@@ -78,8 +98,18 @@
 
             <h3 class="flex">Use tags or categories?</h3>
             <div class="settings-usage">
-                <span><input type="radio" id="settings-rb-tags" value="tags" name="usage">Tags</span>
-                <span><input type="radio" id="settings-rb-cats" value="cats" name="usage">Categories</span>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="settings-rb-tags">
+                    <label class="form-check-label" for="settings-rb-tags">
+                      Tags
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="settings-rb-cats" checked>
+                    <label class="form-check-label" for="settings-rb-cats">
+                      Categories
+                    </label>
+                </div>
             </div>
             <div class="flex">
                 <button type="button" id="settings-reset"><i class="fa fa-trash"></i> Reset Settings</button>
@@ -107,14 +137,17 @@
             </div>
         </div>
 
-        <div class="wrapper-footer flex">
-            <button type="button" id="button-settings"><i class="fa fa-gear"></i></button>
-            <button type="button" id="button-game"><i class="fa fa-house"></i></button>
-            <button type="button" id="button-stats"><i class="fa fa-bar-chart"></i></button>
-        </div>
+        <footer>
+            <div class="wrapper-footer flex">
+                <button type="button" id="button-settings" title="Click here to acess game settings"><i class="fa fa-gear"></i></button>
+                <button type="button" id="button-game" title="Click here to back to the Game"><i class="fa fa-house"></i></button>
+                <button type="button" id="button-stats" title="Clcik here to acess your statistics"><i class="fa fa-bar-chart"></i></button>
+            </div>
+        </footer>
     </div>
 
     <!-- Quiz Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 

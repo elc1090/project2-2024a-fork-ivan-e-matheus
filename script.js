@@ -68,29 +68,40 @@ async function loadTags() {
     console.log("loading tags...")
     let APIUrl = `https://quizapi.io/api/v1/tags?apiKey=${apiKey}`;
     let result;
-    do {
-        result = await fetch(`${APIUrl}`);
-    } while (!result.ok);
-    tags_data = await result.json();
-    let tags_list = [];
-    /* filter list for tags that return no questions. */
-    let filter_tags = [
-        "dev", "Ruby", "Undefined", "postgres", "AWS", "Css", "C", "Java", "Swift",
-        "Blockchain", "VueJS", ".Net"
-    ];
-    tags_data = removeDuplicateList(tags_data, 'name');
-    for (tag of tags_data) {
-        if (!filter_tags.includes(tag.name)) {
-            tags_list.push(tag.name);
-            let opt = document.createElement("option");
-            opt.value = tag.name;
-            opt.text = tag.name;
-            settings_tags_options.add(opt);
+
+    fetch(`${APIUrl}`)
+    .then(response => {
+        // Verifica se a resposta foi bem-sucedida (código de status 200)
+        if (!response.ok) {
+            throw new Error('Erro ao fazer a solicitação: ' + response.status);
         }
-    }
-    tags_data = tags_list;
-    initializeListGrafics(tags_data, 'tag');
-    console.log("loaded tags.");
+        // Converte a resposta para JSON
+        return response.json();
+    })
+    .then(data => {
+        // Remove tags que não retornam nenhuma questão
+        let filter_tags = [
+            "dev", "Ruby", "Undefined", "postgres", "AWS", "Css", "C", "Java", "Swift",
+            "Blockchain", "VueJS", ".Net"
+        ];
+        data = removeDuplicateList(data, 'name');
+        // Para cada categoria, cria um item de lista e adiciona ao elemento UL
+        for (tag of data) {
+            if (!filter_tags.includes(tag.name)) {
+                let opt = document.createElement("option");
+                opt.value = tag.name;
+                opt.text = tag.name;
+                settings_tags_options.add(opt);
+            }
+        }
+        tags_data = data;
+        initializeListGrafics(tags_data, 'tag');
+        console.log("loaded tags.");            
+    })
+    .catch(error => {
+        // Manipula erros
+        console.error('Houve um erro:', error);
+    });
 }
 
 async function loadCategories() {
